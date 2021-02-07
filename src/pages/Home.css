@@ -1,0 +1,19 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: rgb(230,255,241);
+    background: linear-gradient(90deg, rgba(230,255,241,1) 0%, rgba(255,255,255,1) 48%, rgba(245,233,255,0.9640231092436975) 100%);
+}
+
+.home__body {
+    flex: 1;
+    display: flex;
+    margin-top: 10%; 
+    flex-direction: column;
+}
+
+.home__body > img {
+    object-fit: contain;
+    height: 140px;
+}

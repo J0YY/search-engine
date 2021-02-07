@@ -1,0 +1,66 @@
+.search__input {
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgray;
+    height: 30px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background-color: white;
+    width: 70vw;
+    margin: 0 auto;
+    margin-top: 20px;
+    max-width: 560px;
+}
+
+.search__input > input {
+    color: darkslategray;
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    font-size: medium;
+}
+
+.search__input > input:focus {
+    outline-width: 0;
+}
+
+.search__input:hover {
+    box-shadow: 0 2px 4px 0 rgba(75, 75, 75, 0.2), 0 1.25px 8px 0 rgba(75, 75, 75, 0.19);
+}
+
+.search__inputIcon {
+    color: gray;
+}
+
+.search__buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.search__buttons button {
+    margin: 5px;
+    background: linear-gradient(90deg, rgba(252,238,72,1) 0%, rgba(255,179,0,0.8799894957983193) 51%, rgba(255,0,1,0.2945553221288515) 100%);
+    border: 3px solid white;
+    border-radius: 999px;
+    text-transform: inherit;
+}
+
+.IG button {
+    background: linear-gradient(90deg, rgba(252,238,72,1) 0%, rgba(255,0,159,0.865983893557423) 20%, rgba(145,0,255,0.9640231092436975) 100%);
+    border-radius: 999px;
+    margin-top: 5px;
+    color: white;
+    border: 3px solid white;
+    font-size: 15px;
+}
+
+.search__buttons button:hover {
+    background: deepskyblue;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(75, 75, 75, 0.2), 0 2.5px 16px 0 rgba(75, 75, 75, 0.19);
+}
+
+.searchButton__hidden {
+    display: none;
+}
