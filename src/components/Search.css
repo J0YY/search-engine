@@ -10,7 +10,13 @@
     margin: 0 auto;
     margin-top: 20px;
     max-width: 560px;
+    position: relative;
 }
+
+.search { position: relative; }
+.search__transform { will-change: transform; }
+.search--dragging .search__input { cursor: grabbing; }
+
 
 .search__input > input {
     color: darkslategray;
@@ -64,3 +70,55 @@
 .searchButton__hidden {
     display: none;
 }
+
+.search__engines {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+.engine-label {
+    color: #475569;
+    font-size: 14px;
+}
+.engine-select {
+    border-radius: 999px;
+    padding: 6px 10px;
+    border: 1px solid #cbd5e1;
+}
+
+.confetti {
+    position: absolute;
+    left: 0; top: 0;
+    width: 0; height: 0;
+    pointer-events: none;
+}
+.confetti__bit {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    animation: confettiPop .9s ease-out forwards;
+}
+@keyframes confettiPop {
+    0% { opacity: 0; transform: scale(.2) translate(0); }
+    20% { opacity: 1; }
+    100% { opacity: 0; transform: scale(1.2); }
+}
+
+/* Neon animated border */
+.search__input:before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(from 0deg, #ff9bd2, #ffd1f7, #fff3b0, #c6f1ff, #ff9bd2);
+    z-index: -1;
+    animation: spin 6s linear infinite;
+    filter: blur(8px);
+}
+@keyframes spin { 100%{ transform: rotate(360deg) } }
+
+/* Jiggle feedback */
+.search--jiggle .search__input { animation: jiggle 0.18s ease-in-out; }
+@keyframes jiggle { 0%{ transform: translateX(0) } 25%{ transform: translateX(-2px) } 50%{ transform: translateX(2px) } 75%{ transform: translateX(-1px) } 100%{ transform: translateX(0) } }

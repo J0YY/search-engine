@@ -1,70 +1,153 @@
-# Getting Started with Create React App
+## Joy Search (2021 → 2025 refresh) — chaotic front‑end playground
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a glow‑up of a 2021 side project into a modern, highly‑stylized start page and search UI. It’s primarily front‑end practice and playful experimentation with animations, micro‑interactions, and “chaos” modes. The original repo is here: [J0YY/search-engine](https://github.com/J0YY/search-engine.git).
 
-## Available Scripts
+### Demo
+- Add your deployed URL here once available.
 
-In the project directory, you can run:
+### What this is
+- A beautiful, glassy start page with animated gradients and a customizable search experience
+- Lots of optional, opt‑in “chaotic” effects (cute, surprising, but still usable)
+- A lightweight Google Custom Search client (no server) with a results page
 
-### `npm start`
+### Tech stack
+- React 17 (Create React App)
+- Material‑UI v4
+- React Router v5
+- Optional: Firebase Hosting config (client SDK removed)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting started
 
-### `npm test`
+### Prerequisites
+- Node.js 16 (CRA v4 compatible). If you use nvm:
+```bash
+nvm use 16
+```
+- A Google Custom Search Engine (CSE) and API key
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Install and run
+```bash
+npm ci
+npm start
+```
+App runs at http://localhost:3000
 
-### `npm run build`
+### Configure search API
+Create `.env.local` with:
+```bash
+# Google Custom Search
+REACT_APP_GOOGLE_API_KEY=your_google_api_key
+REACT_APP_GOOGLE_CSE_CX=your_cx_id
+```
+`src/useGoogleSearch.js` reads from `process.env`. Rotate any demo keys before publishing.
+Then, update `src/useGoogleSearch.js` to read from `process.env` instead of hard‑coded keys. Example usage:
+```js
+const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+const cx = process.env.REACT_APP_GOOGLE_CSE_CX;
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Note: The current code contains demo keys checked into source. For production, rotate the keys and use environment variables instead.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3) Run locally
+```bash
+npm start
+```
+- App runs on `http://localhost:3000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Scripts
+- `npm start`: start dev server
+- `npm test`: run tests (CRA default)
+- `npm run build`: production build to `build/`
+- `npm run eject`: eject CRA config
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## What everything does
+- Global state: `StateProvider` + `reducer` store the current `term`
+- Search: `useGoogleSearch(term)` calls Google CSE and returns `items` and `searchInformation`
+- Results page: `pages/SearchPage.js` renders counts and links
+- Start page: greeting, live clock, quick links, settings, and playable search bar
+- Playground modes (Settings → toggles):
+  - Chaos mode: cute runners + floating stickers; Party button boosts intensity
+  - Magnetic search: bar avoids cursor until you click/hold it
+  - Gravity slider: drop/bounce intensity for the search bar
+  - Weight anchor: Left/Center/Right/Caret — subtle tilt follows weight
+  - Jiggle feedback: tiny shake on Enter/backspace (optional sounds)
+  - Sticker bombs: emoji bursts on keywords: love, cat, star, wow, party…
+  - Reactive gradient: hue shifts with query sentiment
+  - Warp speed: starfield overlay on search
+  - Pet buddy: a tiny friend that follows the cursor and naps on the bar
+  - Cursor trail, Parallax blobs, Rain mode (idle letters) for extra vibes
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Deploy (optional: Firebase Hosting)
+`firebase.json` is preconfigured to serve the CRA build and rewrite all routes to `index.html`.
 
-## Learn More
+1. Install the Firebase CLI and log in
+```bash
+npm install -g firebase-tools
+firebase login
+```
+2. Build
+```bash
+npm run build
+```
+3. Deploy
+```bash
+firebase deploy
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Tip: If you have multiple Firebase projects, set an alias first:
+```bash
+firebase use --add
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## Use as your browser start page
+Two options:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Chrome/Edge: install the extension “New Tab Redirect” and set the URL to your deployed site
+- Set your homepage to your deployed URL (browser settings) and choose “Open a specific page” on startup
 
-### Analyzing the Bundle Size
+Optional: you can also create a lightweight Chrome extension to override the new tab page. Create an `extension/` folder with a `manifest.json` using `chrome_url_overrides.newtab` pointing to a packaged `newtab.html` that loads your built app, then load it via `chrome://extensions` → “Load unpacked”.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Project structure
+```text
+search-engine/
+  public/               # CRA static assets
+  src/
+    components/         # Search, Clock, Chaos, Pet, etc.
+    pages/              # Home + Search results pages
+    useGoogleSearch.js  # Google CSE hook
+    StateProvider.js    # Global state provider
+    reducer.js          # Reducer with SET_SEARCH_TERM
+  firebase.json         # Hosting configuration
+  package.json          # Scripts + dependencies
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Configuration notes and limitations
+- Rotate and move any committed API keys to environment variables before public deployment
+- Some header options (e.g., Images/Maps/News) are decorative in this build
+- Pagination and image search are not implemented
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Troubleshooting
+- PostCSS export error: use Node 16 (CRA v4). With nvm: `nvm use 16`
+- 403 from Google API: verify API is enabled, `key`/`cx` values, and referrer rules
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## Credits
+- Built with Create React App, Material‑UI, and Google Custom Search
+- Original 2021 project refreshed in 2025 for UI fun and practice
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

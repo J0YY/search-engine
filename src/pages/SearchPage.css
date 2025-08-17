@@ -51,7 +51,8 @@
     text-decoration: none;
 }
 .searchPage_title:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    animation: glitch 0.32s steps(2, end) 1;
 }
 .searchPage_title > h3 {
     font-size: 20px;
@@ -104,6 +105,11 @@
 }
 #appIcon:hover {
     color: black;
+}
+@keyframes glitch {
+    0% { text-shadow: 2px 0 #ff00a8, -2px 0 #00d9ff; }
+    50% { text-shadow: -2px 0 #ff00a8, 2px 0 #00d9ff; }
+    100% { text-shadow: none; }
 }
 .topSec {
     display: flex;
