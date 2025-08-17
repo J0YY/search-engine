@@ -1,9 +1,12 @@
 ## Joy Search (2021 → 2025 refresh) — chaotic front‑end playground
 
-This is a glow‑up of a 2021 side project into a modern, highly‑stylized start page and search UI. It’s primarily front‑end practice and playful experimentation with animations, micro‑interactions, and “chaos” modes. The original repo is here: [J0YY/search-engine](https://github.com/J0YY/search-engine.git).
+This is a glow‑up of a 2021 side project into a modern, highly‑stylized start page and search UI. It’s primarily front‑end practice and playful experimentation with animations, micro‑interactions, and “chaos” modes. The original repo is in the commit history.
 
-### Demo
-- Add your deployed URL here once available.
+---
+
+<img width="1470" height="753" alt="Screenshot 2025-08-16 at 7 23 15 PM" src="https://github.com/user-attachments/assets/b849729e-ee84-446b-9c6b-5049a862a808" />
+
+---
 
 ### What this is
 - A beautiful, glassy start page with animated gradients and a customizable search experience
