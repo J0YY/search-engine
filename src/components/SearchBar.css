@@ -1,0 +1,29 @@
+.search__input {
+    border: 1px solid lightgray;
+    height: 25px;
+    border-radius: 999px;
+    background-color: white;
+    width: 60vw;
+    max-width: 560px;
+    margin-top: 10px;
+}
+
+.search__input > input {
+    color: darkslategray;
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    font-size: medium;
+}
+
+.search__input > input:focus {
+    outline-width: 0;
+}
+
+.search__input:hover {
+    box-shadow: 0 2px 4px 0 rgba(75, 75, 75, 0.2), 0 1.25px 8px 0 rgba(75, 75, 75, 0.19);
+}
+
+.search__inputIcon {
+    color: gray;
+}
